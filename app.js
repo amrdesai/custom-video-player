@@ -26,10 +26,29 @@ const updatePlayIcon = () => {
 };
 
 // Fucntion: Update progress bar
-const updateProgress = () => {};
+const updateProgress = () => {
+    progressBar.value = (video.currentTime / video.duration) * 100;
+
+    // Get minutes
+    let minutes = Math.floor(video.currentTime / 60);
+    if (minutes < 10) {
+        minutes = '0' + String(minutes);
+    }
+
+    // Get Seconds
+    let seconds = Math.floor(video.currentTime % 60);
+    if (seconds < 10) {
+        seconds = '0' + String(seconds);
+    }
+
+    // Update timestamp
+    timestamp.innerHTML = `${minutes}:${seconds}`;
+};
 
 // Fucntion: Change video timer & progress
-const setVideoProgress = () => {};
+const setVideoProgress = () => {
+    video.currentTime = (+progress.value * video.duration) / 100;
+};
 
 // Fucntion: Stop video
 const stopVideo = () => {
